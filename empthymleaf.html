@@ -167,14 +167,97 @@
             </tr>
         </thead>
         <tbody>
-            <tr th:each="employee : ${employees}">
-                <td th:text="${employee.id}"></td>
-                <td th:text="${employee.name}"></td>
-                <td th:text="${employee.department}"></td>
+            <!-- Predefined example values -->
+            <tr>
+                <td>1</td>
+                <td>John Doe</td>
+                <td>HR</td>
                 <td>
-                    <a th:href="@{/employees/delete/{id}(id=${employee.id})}">Delete</a>
+                    <a href="/employees/delete/1">Delete</a>
                 </td>
             </tr>
+            <tr>
+                <td>2</td>
+                <td>Jane Smith</td>
+                <td>IT</td>
+                <td>
+                    <a href="/employees/delete/2">Delete</a>
+                </td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Emily Johnson</td>
+                <td>Marketing</td>
+                <td>
+                    <a href="/employees/delete/3">Delete</a>
+                </td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Jane Smith</td>
+                <td>IT</td>
+                <td>
+                    <a href="/employees/delete/2">Delete</a>
+                </td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Emily Johnson</td>
+                <td>Marketing</td>
+                <td>
+                    <a href="/employees/delete/3">Delete</a>
+                </td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Jane Smith</td>
+                <td>IT</td>
+                <td>
+                    <a href="/employees/delete/2">Delete</a>
+                </td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Emily Johnson</td>
+                <td>Marketing</td>
+                <td>
+                    <a href="/employees/delete/3">Delete</a>
+                </td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Jane Smith</td>
+                <td>IT</td>
+                <td>
+                    <a href="/employees/delete/2">Delete</a>
+                </td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Emily Johnson</td>
+                <td>Marketing</td>
+                <td>
+                    <a href="/employees/delete/3">Delete</a>
+                </td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Jane Smith</td>
+                <td>IT</td>
+                <td>
+                    <a href="/employees/delete/2">Delete</a>
+                </td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Emily Johnson</td>
+                <td>Marketing</td>
+                <td>
+                    <a href="/employees/delete/3">Delete</a>
+                </td>
+            </tr>
+            
+
         </tbody>
     </table>
 </body>
