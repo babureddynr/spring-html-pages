@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management System</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+           background-color: #fefefe; /* Black background */
+           color: #000000; /* Light text color */
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .card {
+            margin-bottom: 30px;
+            background-color: #1c1c1c; /* Dark background for cards */
+            color: #f5f5f5; /* Light text for card content */
+            border: none; /* No border */
+        }
+        .form-control {
+            background-color: #333333; /* Dark background for form inputs */
+            color: #f5f5f5; /* Light text for form inputs */
+            border: 1px solid #444444; /* Darker border */
+        }
+        .btn {
+            margin-top: 10px;
+        }
+        .btn-block {
+            margin-top: 20px;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .btn-info {
+            background-color: #17a2b8;
+            border-color: #17a2b8;
+        }
+        .btn-warning {
+            background-color: #ffc107;
+            border-color: #ffc107;
+        }
+        .btn-danger {
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+            border-color: #6c757d;
+        }
+        /* Modify list group background and text */
+        .list-group-item {
+            background-color: #1c1c1c;
+            color: #f5f5f5;
+            border: 1px solid #444444;
+        }
+        /* Modify alert message box */
+        #message {
+            background-color: #333333;
+            border: 1px solid #444444;
+            color: #f5f5f5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Student Management System</h1>
+        
+        <!-- Insert Student -->
+        <div class="card">
+            <div class="card-header">
+                <h3>Insert Student</h3>
+            </div>
+            <div class="card-body">
+                <form id="insert-student-form">
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="age">Age:</label>
+                        <input type="number" id="age" name="age" class="form-control">
+                    </div>
+                    <input type="submit" value="Insert Student" class="btn btn-primary btn-block">
+                </form>
+            </div>
+        </div>
+        
+        <!-- Get All Students -->
+        <div class="card">
+            <div class="card-header">
+                <h3>All Students</h3>
+            </div>
+            <div class="card-body">
+                <button id="get-students-btn" class="btn btn-secondary btn-block">Get All Students</button>
+                <ul id="students-list" class="list-group mt-3"></ul>
+            </div>
+        </div>
+        
+        <!-- Get Student by ID -->
+        <div class="card">
+            <div class="card-header">
+                <h3>Get Student</h3>
+            </div>
+            <div class="card-body">
+                <form id="get-student-form">
+                    <div class="form-group">
+                        <label for="id">ID:</label>
+                        <input type="number" id="id" name="id" class="form-control">
+                    </div>
+                    <input type="submit" value="Get Student" class="btn btn-info btn-block">
+                </form>
+                <div id="student-details" class="mt-3"></div>
+            </div>
+        </div>
+        
+        <!-- Update Student -->
+        <div class="card">
+            <div class="card-header">
+                <h3>Update Student</h3>
+            </div>
+            <div class="card-body">
+                <form id="update-student-form">
+                    <div class="form-group">
+                        <label for="id-update">ID:</label>
+                        <input type="number" id="id-update" name="id-update" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="name-update">Name:</label>
+                        <input type="text" id="name-update" name="name-update" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="age-update">Age:</label>
+                        <input type="number" id="age-update" name="age-update" class="form-control">
+                    </div>
+                    <input type="submit" value="Update Student" class="btn btn-warning btn-block">
+                </form>
+            </div>
+        </div>
+        
+        <!-- Delete Student -->
+        <div class="card">
+            <div class="card-header">
+                <h3>Delete Student</h3>
+            </div>
+            <div class="card-body">
+                <form id="delete-student-form">
+                    <div class="form-group">
+                        <label for="id-delete">ID:</label>
+                        <input type="number" id="id-delete" name="id-delete" class="form-control">
+                    </div>
+                    <input type="submit" value="Delete Student" class="btn btn-danger btn-block">
+                </form>
+            </div>
+        </div>
+        
+        <!-- Message Display -->
+        <div id="message" class="alert alert-info mt-4" role="alert" style="display: none;"></div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Your JavaScript file -->
+    <script src="app.js">
+        const baseUrl = 'http://localhost:8080/api/student-management/students';
+
+document.getElementById('insert-student-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('name').value;
+    const age = document.getElementById('age').value;
+
+    fetch(baseUrl, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ name, age })
+    })
+    .then((response) => {
+        if (response.ok) {
+            return response.text();
+        } else {
+            throw new Error('Failed to create student');
+        }
+    })
+    .then((message) => displayMessage(`Student created successfully! ${message}`))
+    .catch((error) => displayMessage(error.message));
+});
+
+document.getElementById('get-students-btn').addEventListener('click', () => {
+    fetch(baseUrl)
+        .then((response) => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error('Failed to fetch students');
+            }
+        })
+        .then((data) => {
+            const studentsList = document.getElementById('students-list');
+            studentsList.innerHTML = '';
+            data.forEach((student) => {
+                const listItem = document.createElement('li');
+                listItem.className = 'list-group-item';
+                listItem.textContent = `ID: ${student.id}, Name: ${student.name}, Age: ${student.age}`;
+                studentsList.appendChild(listItem);
+            });
+        })
+        .catch((error) => displayMessage(error.message));
+});
+
+document.getElementById('get-student-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const id = document.getElementById('id').value;
+
+    fetch(`${baseUrl}/${id}`)
+        .then((response) => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error('Failed to fetch student');
+            }
+        })
+        .then((data) => {
+            const studentDetails = document.getElementById('student-details');
+            studentDetails.innerHTML = '';
+            const paragraph = document.createElement('p');
+            paragraph.textContent = `ID: ${data.id}, Name: ${data.name}, Age: ${data.age}`;
+            studentDetails.appendChild(paragraph);
+        })
+        .catch((error) => displayMessage(error.message));
+});
+
+document.getElementById('update-student-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const id = document.getElementById('id-update').value;
+    const name = document.getElementById('name-update').value;
+    const age = document.getElementById('age-update').value;
+
+    fetch(`${baseUrl}/${id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ name, age })
+    })
+    .then((response) => {
+        if (response.ok) {
+            return response.json();
+        } else {
+            throw new Error('Failed to update student');
+        }
+    })
+    .then((data) => displayMessage(`Student updated successfully! ${data}`))
+    .catch((error) => displayMessage(error.message));
+});
+
+document.getElementById('delete-student-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const id = document.getElementById('id-delete').value;
+
+    fetch(`${baseUrl}/${id}`, {
+        method: 'DELETE'
+    })
+    .then((response) => {
+        if (response.ok) {
+            return response.text();
+        } else {
+                throw new Error('Failed to delete student');
+        }
+    })
+    .then((message) => displayMessage(`Student deleted successfully! ${message}`))
+    .catch((error) => displayMessage(error.message));
+});
+
+function displayMessage(message) {
+    const messageDiv = document.getElementById('message');
+    messageDiv.style.display = 'block';
+    messageDiv.textContent = message;
+}
+
+    </script>
+</body>
+</html>
