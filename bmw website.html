@@ -6,49 +6,82 @@
     <title>BMW - Sheer Driving Pleasure</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        /* Base Styles */
-        * {
+        /* Modern Reset */
+        *, *::before, *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'BMW Type Next', Arial, sans-serif;
+        }
+
+        /* Custom Properties */
+        :root {
+            --bmw-blue: #1c69d4;
+            --bmw-dark: #262626;
+            --bmw-light: #f6f6f6;
+            --transition: all 0.3s ease;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         body {
-            background: #ffffff;
-            color: #262626;
+            font-family: 'BMW Type Next', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--bmw-dark);
             overflow-x: hidden;
         }
 
-        /* Navigation */
+        /* Enhanced Navigation */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 0.75rem 2rem;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 2rem;
-            z-index: 1000;
-            transition: background 0.3s;
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+            transition: var(--transition);
         }
 
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 2.5rem;
             align-items: center;
         }
 
         .nav-links a {
             text-decoration: none;
-            color: #262626;
+            color: var(--bmw-dark);
             font-weight: 500;
-            transition: color 0.3s;
+            position: relative;
+            padding: 0.5rem 0;
         }
 
-        .nav-links a:hover {
-            color: #1c69d4;
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--bmw-blue);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
         .nav-icons {
@@ -56,248 +89,394 @@
             gap: 1.5rem;
         }
 
-        .hamburger {
-            display: none;
+        .nav-icons i {
             cursor: pointer;
+            transition: var(--transition);
         }
 
-        /* Hero Section */
+        .nav-icons i:hover {
+            color: var(--bmw-blue);
+        }
+
+        .mobile-menu {
+            display: none;
+        }
+
+        /* Enhanced Hero Section */
         .hero {
-            position: relative;
             height: 100vh;
-            overflow: hidden;
+            position: relative;
+            background: black;
         }
 
         .hero video {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            opacity: 0.8;
         }
 
         .hero-content {
             position: absolute;
             top: 50%;
-            left: 10%;
-            transform: translateY(-50%);
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
             color: white;
-            z-index: 2;
+            width: 90%;
+            max-width: 800px;
         }
 
         .hero-content h1 {
-            font-size: 4rem;
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
             font-weight: 700;
+            line-height: 1.2;
             margin: 1rem 0;
-            animation: slideIn 1s ease-out;
+            opacity: 0;
+            animation: fadeInUp 1s forwards 0.5s;
         }
 
-        /* Shopping Tools Section */
+        .hero-content h3 {
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            opacity: 0;
+            animation: fadeInUp 1s forwards;
+        }
+
+        /* Enhanced Shopping Tools */
         .shopping-tools {
-            padding: 4rem 2rem;
-            background: #f6f6f6;
+            padding: 6rem 2rem;
+            background: var(--bmw-light);
+        }
+
+        .section-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
         }
 
         .tools-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
-            margin-top: 2rem;
         }
 
         .tool-card {
             background: white;
-            padding: 2rem;
-            border-radius: 4px;
-            text-align: center;
-            transition: transform 0.3s;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
         }
 
         .tool-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
         }
 
-        /* Button Styles */
+        .tool-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .tool-content {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        /* Enhanced Button Styles */
         .bmw-button {
             display: inline-block;
-            padding: 1rem 2rem;
-            background: #1c69d4;
+            padding: 1rem 2.5rem;
+            background: var(--bmw-blue);
             color: white;
             border: none;
-            border-radius: 2px;
-            cursor: pointer;
-            transition: background 0.3s;
-            text-decoration: none;
-            text-transform: uppercase;
+            border-radius: 4px;
             font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 1.5rem;
         }
 
         .bmw-button:hover {
             background: #0653b6;
+            transform: translateY(-2px);
         }
 
-        /* Featured Models */
+        /* Enhanced Featured Models */
         .featured {
-            padding: 4rem 2rem;
+            padding: 6rem 2rem;
         }
 
         .model-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
         }
 
         .model-card {
             position: relative;
+            border-radius: 8px;
             overflow: hidden;
-            border-radius: 4px;
+            box-shadow: var(--shadow);
         }
 
         .model-card img {
             width: 100%;
-            height: 300px;
+            height: 400px;
             object-fit: cover;
-            transition: transform 0.3s;
+            transition: var(--transition);
+        }
+
+        .model-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
+            transform: translateY(100px);
+            transition: var(--transition);
+        }
+
+        .model-card:hover .model-content {
+            transform: translateY(0);
         }
 
         .model-card:hover img {
-            transform: scale(1.05);
+            transform: scale(1.1);
         }
 
-        /* Footer */
+        /* Enhanced Footer */
         footer {
-            background: #262626;
+            background: var(--bmw-dark);
             color: white;
-            padding: 4rem 2rem;
+            padding: 4rem 2rem 2rem;
         }
 
         .footer-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 0.75rem;
+            opacity: 0.8;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .footer-section li:hover {
+            opacity: 1;
+            color: var(--bmw-blue);
         }
 
         .social-icons {
             display: flex;
-            gap: 1rem;
+            gap: 1.5rem;
+            margin: 3rem 0;
+            justify-content: center;
+        }
+
+        .social-icons i {
+            font-size: 1.5rem;
+            opacity: 0.8;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .social-icons i:hover {
+            opacity: 1;
+            color: var(--bmw-blue);
+        }
+
+        .copyright {
+            text-align: center;
+            opacity: 0.6;
             margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         /* Animations */
-        @keyframes slideIn {
+        @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateX(-50px);
+                transform: translateY(30px);
             }
             to {
                 opacity: 1;
-                transform: translateX(0);
+                transform: translateY(0);
             }
         }
 
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            .hamburger {
-                display: block;
+        /* Enhanced Mobile Responsiveness */
+        @media (max-width: 968px) {
+            .nav-links {
+                display: none;
             }
 
-            .nav-links {
+            .mobile-menu {
+                display: block;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+
+            .mobile-nav {
                 position: fixed;
                 top: 70px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 70px);
-                background: white;
-                flex-direction: column;
-                padding: 2rem;
-                transition: 0.3s;
-            }
-
-            .nav-links.active {
                 left: 0;
+                right: 0;
+                background: white;
+                padding: 2rem;
+                box-shadow: var(--shadow);
+                transform: translateY(-100%);
+                transition: var(--transition);
             }
 
-            .hero-content h1 {
-                font-size: 2.5rem;
+            .mobile-nav.active {
+                transform: translateY(0);
             }
 
+            .mobile-nav a {
+                display: block;
+                padding: 1rem 0;
+                text-decoration: none;
+                color: var(--bmw-dark);
+                border-bottom: 1px solid #eee;
+            }
+
+            .hero-content {
+                width: 95%;
+            }
+
+            .tools-grid,
             .model-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                text-align: center;
             }
         }
     </style>
 </head>
 <body>
     <nav>
-        <img src="https://www.bmw.in/content/dam/bmw/common/images/logo-icons/BMW/BMW_Grey-Colour_RGB.SVG.asset.1697707041685.SVG" alt="BMW Logo" width="80" height="60">
-        <div class="nav-links">
-            <a href="#">Models</a>
-            <a href="#">Electric</a>
-            <a href="#">Configuration</a>
-            <a href="#">Online Shop</a>
-            <a href="#">More BMW</a>
-        </div>
-        <div class="nav-icons">
-            <i class="fa-solid fa-house"></i>
-            <i class="fa-solid fa-user"></i>
-            <i class="fa-solid fa-magnifying-glass"></i>
-        </div>
-        <div class="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
+        <div class="nav-container">
+            <div class="logo">
+                <img src="bmw logo2.png" alt="BMW Logo">
+            </div>
+            <div class="nav-links">
+                <a href="#models">Models</a>
+                <a href="#electric">Electric</a>
+                <a href="#configurator">Build Your Own</a>
+                <a href="#shop">Shop BMW</a>
+                <a href="#more">More BMW</a>
+            </div>
+            <div class="nav-icons">
+                <i class="fa-solid fa-location-dot"></i>
+                <i class="fa-solid fa-user"></i>
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+            <div class="mobile-menu">
+                <i class="fa-solid fa-bars"></i>
+            </div>
         </div>
     </nav>
 
+    <div class="mobile-nav">
+        <a href="#models">Models</a>
+        <a href="#electric">Electric</a>
+        <a href="#configurator">Build Your Own</a>
+        <a href="#shop">Shop BMW</a>
+        <a href="#more">More BMW</a>
+    </div>
+
     <section class="hero">
-        <video autoplay muted loop  playsinline>
+        <video autoplay muted loop playsinline>
             <source src="bmw videdo.mp4" type="video/mp4">
         </video>
         <div class="hero-content">
-            <h3>THE FIRST FULLY ELECTRIC</h3>
-            <h1>BMW iX1</h1>
-            <h1>CHARGE AHEAD. EXCEED.</h1>
-            <a href="#" class="bmw-button">Discover Now</a>
+            <h3>THE FIRST-EVER ALL-ELECTRIC</h3>
+            <h1>BMW i7</h1>
+            <h1>FORWARDISM IN MOTION</h1>
+            <a href="#" class="bmw-button">Explore Now</a>
         </div>
     </section>
 
     <section class="shopping-tools">
-        <h2>SHOPPING TOOLS</h2>
-        <div class="tools-grid">
-            <div class="tool-card">
-                <img src="bmw image 1.jpeg" alt="Find New Car">
-                <h3>Find a New Car</h3>
-                <a href="#" class="bmw-button">Search Now</a>
-            </div>
-            <div class="tool-card">
-                <img src="bmw image 2.jpeg" alt="Test Drive">
-                <h3>Book a Test Drive</h3>
-                <a href="#" class="bmw-button">Request Test Drive</a>
-            </div>
-            <div class="tool-card">
-                <img src="bmw image 3.jpeg" alt="Build Your Own">
-                <h3>Build Your Own</h3>
-                <a href="#" class="bmw-button">Configure & Price</a>
+        <div class="section-container">
+            <h2 class="section-title">SHOPPING TOOLS</h2>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <img src="bmw image 1.jpeg" alt="Find New Car">
+                    <div class="tool-content">
+                        <h3>Find Your BMW</h3>
+                        <p>Search our extensive inventory</p>
+                        <a href="#" class="bmw-button">Search Inventory</a>
+                    </div>
+                </div>
+                <div class="tool-card">
+                    <img src="bmw image 2.jpeg" alt="Test Drive">
+                    <div class="tool-content">
+                        <h3>Schedule a Test Drive</h3>
+                        <p>Experience the ultimate driving machine</p>
+                        <a href="#" class="bmw-button">Book Now</a>
+                    </div>
+                </div>
+                <div class="tool-card">
+                    <img src="bmw image 3.jpeg" alt="Build Your Own">
+                    <div class="tool-content">
+                        <h3>Build Your Own</h3>
+                        <p>Customize your perfect BMW</p>
+                        <a href="#" class="bmw-button">Start Building</a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <section class="featured">
-        <h2>FEATURED MODELS</h2>
-        <div class="model-grid">
-            <div class="model-card">
-                <img src="bmw iamge 4.jpeg" alt="BMW X5">
-                <div class="model-content">
-                    <h3>THE NEW BMW X5</h3>
-                    <p>CRAFTED SUPREMACY</p>
-                    <a href="#" class="bmw-button">Learn More</a>
+        <div class="section-container">
+            <h2 class="section-title">FEATURED MODELS</h2>
+            <div class="model-grid">
+                <div class="model-card">
+                    <img src="bmw iamge 4.jpeg" alt="BMW X5">
+                    <div class="model-content">
+                        <h3>THE NEW BMW X5</h3>
+                        <p>CRAFTED SUPREMACY</p>
+                        <a href="#" class="bmw-button">Discover More</a>
+                    </div>
                 </div>
-            </div>
-            <div class="model-card">
-                <img src="bmw image 6.webp" alt="BMW 7 Series">
-                <div class="model-content">
-                    <h3>THE 7</h3>
-                    <p>THIS IS FORWARDISM</p>
-                    <a href="#" class="bmw-button">Learn More</a>
+                <div class="model-card">
+                    <img src="bmw 5.jpeg" alt="BMW 7 Series">
+                    <div class="model-content">
+                        <h3>THE 7</h3>
+                        <p>THIS IS FORWARDISM</p>
+                        <a href="#" class="bmw-button">Learn More</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -305,80 +484,163 @@
 
     <footer>
         <div class="footer-grid">
-            <div>
+            <div class="footer-section">
                 <h4>FIND YOUR BMW</h4>
                 <ul>
-                    <li>Find a Dealer</li>
-                    <li>Request a Test Drive</li>
-                    <li>Build Your BMW</li>
+                    <li>New Vehicles</li>
+                    <li>Pre-Owned</li>
+                    <li>Special Offers</li>
+                    <li>Build Your Own</li>
                 </ul>
             </div>
-            <div>
-                <h4>QUICK LINKS</h4>
+            <div class="footer-section">
+                <h4>EXPERIENCE</h4>
                 <ul>
+                    <li>Test Drive</li>
                     <li>BMW Financial Services</li>
-                    <li>BMW Safety</li>
-                    <li>BMW Calculator</li>
+                    <li>BMW Technology</li>
+                    <li>BMW ConnectedDrive</li>
+                    <li>BMW Motorsport</li>
                 </ul>
             </div>
-            <div>
-                <h4>LEGAL</h4>
+            <div class="footer-section">
+                <h4>SERVICES</h4>
                 <ul>
-                    <li>Legal Disclaimer</li>
+                    <li>Service & Maintenance</li>
+                    <li>Parts & Accessories</li>
+                    <li>BMW Service Status</li>
+                    <li>Service Offers</li>
+                    <li>Owner's Manuals</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>LEGAL & CORPORATE</h4>
+                <ul>
+                    <li>Contact BMW</li>
                     <li>Privacy Policy</li>
-                    <li>Contact Us</li>
+                    <li>Cookie Policy</li>
+                    <li>Legal Notice</li>
+                    <li>Corporate Information</li>
                 </ul>
             </div>
         </div>
+        
         <div class="social-icons">
-            <i class="fab fa-facebook"></i>
+            <i class="fab fa-facebook-f"></i>
             <i class="fab fa-instagram"></i>
             <i class="fab fa-youtube"></i>
-            <i class="fab fa-linkedin"></i>
             <i class="fab fa-twitter"></i>
+            <i class="fab fa-linkedin-in"></i>
         </div>
-        <p class="copyright">© BMW AG 2024</p>
+        
+        <p class="copyright">© BMW AG 2024. All Rights Reserved</p>
     </footer>
 
     <script>
-        // Navbar scroll effect
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 50) {
-                nav.style.background = 'rgba(255, 255, 255, 0.95)';
-            } else {
-                nav.style.background = 'rgba(255, 255, 255, 0.8)';
-            }
-        });
-
-        // Hamburger menu
-        const hamburger = document.querySelector('.hamburger');
-        const navLinks = document.querySelector('.nav-links');
+        // Mobile menu functionality
+        const mobileMenuBtn = document.querySelector('.mobile-menu');
+        const mobileNav = document.querySelector('.mobile-nav');
         
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileNav.classList.toggle('active');
+            mobileMenuBtn.querySelector('i').classList.toggle('fa-bars');
+            mobileMenuBtn.querySelector('i').classList.toggle('fa-xmark');
         });
 
-        // Smooth scroll
+        // Navbar scroll effect
+        const nav = document.querySelector('nav');
+        let lastScroll = 0;
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll <= 0) {
+                nav.style.boxShadow = 'none';
+                nav.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                nav.style.boxShadow = 'var(--shadow)';
+                nav.style.background = 'rgba(255, 255, 255, 0.98)';
+            }
+
+            lastScroll = currentScroll;
+        });
+
+        // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        // Intersection Observer for animations
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('show');
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    mobileNav.classList.remove('active');
+                    mobileMenuBtn.querySelector('i').classList.remove('fa-xmark');
+                    mobileMenuBtn.querySelector('i').classList.add('fa-bars');
                 }
             });
         });
 
-        document.querySelectorAll('.tool-card, .model-card').forEach((el) => observer.observe(el));
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Animate sections on scroll
+        document.querySelectorAll('.tool-card, .model-card, .footer-section').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+
+        // Lazy loading for images
+        const lazyImages = document.querySelectorAll('img[data-src]');
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src;
+                    img.removeAttribute('data-src');
+                    imageObserver.unobserve(img);
+                }
+            });
+        });
+
+        lazyImages.forEach(img => imageObserver.observe(img));
+
+        // Add resize listener for mobile menu
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 968) {
+                mobileNav.classList.remove('active');
+                mobileMenuBtn.querySelector('i').classList.remove('fa-xmark');
+                mobileMenuBtn.querySelector('i').classList.add('fa-bars');
+            }
+        });
+
+        // Performance optimization
+        document.addEventListener('DOMContentLoaded', () => {
+            // Defer non-critical CSS
+            const linkTags = document.getElementsByTagName('link');
+            for (let i = 0; i < linkTags.length; i++) {
+                if (linkTags[i].rel === 'stylesheet' && linkTags[i].getAttribute('href').includes('font-awesome')) {
+                    linkTags[i].setAttribute('media', 'print');
+                    linkTags[i].setAttribute('onload', "this.media='all'");
+                }
+            }
+        });
     </script>
 </body>
 </html>
