@@ -3,859 +3,461 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Netflix Redesign</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
     <style>
-        
-#ttr{
-  display: flex;
-}
-        body{
+        /* Reset and Base Styles */
+        * {
             margin: 0;
-            overflow-x: hidden;
-            background-color: rgb(60, 60, 60);
+            padding: 0;
+            box-sizing: border-box;
         }
-        .ty1{
- box-shadow: 0 0 10px black;
+
+        :root {
+            --netflix-red: #e50914;
+            --dark-bg: #262626;
+            --text-color: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+      /* Container for the navigation */
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #222222; /* Netflix dark background */
+    height: 70px;
 }
 
-#tx1{
-    position: absolute;
-    bottom: 630px;
-    left: 120px;
-    
+/* Netflix logo */
+.logo {
+    width: 120px; /* Adjust logo size */
+    height: auto;
 }
-#lang{
-    position: absolute;
-    bottom: 690px;
-    left: 1100px;
-    background-color: transparent;
-    height: 30px;
-    width: 120px;
-    color: rgb(255, 255, 255);
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    font-size: 20px;
+
+/* Language dropdown and sign-in controls */
+.nav-controls {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Space between select and button */
+}
+
+/* Language select */
+.language-select {
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #555;
     border-radius: 5px;
-    
-
+    font-size: 14px;
+    cursor: pointer;
+    appearance: none;
 }
 
-    #lang::values{
-  color: rgb(0, 0, 0);
-  
-    }
-  #tx2{
-    position: absolute;
-    bottom: 690px;
-    left: 1240px;
+/* Button styling for the Sign In button */
+.submit-btn {
+    padding: 10px 20px;
+    background-color: #e50914; /* Netflix red */
+    color: white;
     border: none;
-    color: white;
-    background-color: rgb(255, 0, 0);
-    height: 30px;
-    width: 70px;
     border-radius: 5px;
-  }
-    #tx3{
-        position: absolute;
-    bottom: 320px;
-    left: 250px;
-    color: white;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 60px;
+    font-size: 16px;
+    cursor: pointer;
     font-weight: bold;
-    }
-    #tx4{
-        position: absolute;
-    bottom: 280px;
-    left: 500px;
-    color: white;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 30px;
-   
-    }
-    #tx5{
-        position: absolute;
-    bottom: 240px;
-    left: 400px;
-    color: white;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 20px;
-    }
-    #tx6{
-        position: absolute;
-    bottom: 180px;
-    left: 420px;
-    background-color: rgba(32, 32, 32, 0.714);
-    height: 50px;
-    width: 400px;
-    color: rgb(255, 255, 255);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 20px;
-    border: 1px solid white;
-    transition: all 0.2 ease;
-    border-radius: 10px;
-    }
-    #tx6::placeholder {
-
-  color: white;
 }
-#tx7{
-        position: absolute;
-    bottom: 180px;
-    left: 850px;
-    background-color: rgb(255, 0, 0);
-    height: 55px;
-    width: 200px;
-    color: rgb(255, 255, 255);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 20px;
-    border:none;
-    font-size: 25px;
-    transition: all 0.2 ease;
-    border-radius: 10px;
-    }
-    button:hover{
-        transform: scale3d(1.2);
 
-    }
-    #tx8{
-        
-        position: absolute;
-     left: 200px;
-    top: 900px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-weight: bold;
-    font-size: 50px;
+.submit-btn:hover {
+    background-color: #f40612; /* Slightly lighter red on hover */
+}
 
-    color: white;
+.submit-btn:active {
+    background-color: #d00812; /* Darker red when clicked */
+}
 
-    z-index: 20;
-    
-    }
-    div{
-        position: absolute;
-     margin:0;
-    top: 710px;
-    background-color: black;
-    height: 520px;
-    width: 100%;
-    
-    }
-    #tx9{
-        
-        position: absolute;
-     left: 200px;
-    top: 1000px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-weight: bold;
-    font-size: 25px;
 
-    color: white;
+        .nav.scrolled {
+            background: var(--dark-bg);
+        }
 
-    z-index: 20;
-    
-    }
-    #tx10{
-        
-        position: absolute;
-     left: 800px;
-    top: 780px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-weight: bold;
-    font-size: 25px;
-    color: white;
-    z-index: 990;
-    height:400px;
-    width: 600px;
-    
-    }
-    #tx11{
-        
-        position: absolute;
-     left: 870px;
-    top: 850px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-weight: bold;
-    font-size: 25px;
-    color: white;
-    z-index: 20;
-    height:260px;
-    width: 470px;
-    
-    }
-    #tx12{
-        position: absolute;
-     margin:0;
-    top: 1240px;
-    background-color: black;
-    height: 550px;
-    width: 100%;
-    z-index: 56;
-    
-    }
-    #tx13{
-        position: absolute;
-     margin:0;
-     left: 160px;
-    top: 1300px;
-    height: 370px;
-    width: 570px;
-    z-index: 66;
-    
-    }
-    #tx14{
-        position: absolute;
-     margin:0;
-     left: 300px;
-    top: 1550px;
-    height: 100px;
-    width: 300px;
-    z-index: 70;
-    background-color: rgba(0, 0, 0, 0.818);
-    border: 0.5px solid white;
-    border-radius: 10px;
-    
-    }
-    #tx15{
-        position: absolute;
-     margin:0;
-     left: 310px;
-    top: 1560px;
-    height: 80px;
-    width: 70px;
-    z-index: 71;
-    border-radius: 20px;
-    }
-    #tx16{
-        position: absolute;
-     margin:0;
-     left: 400px;
-    top: 1580px;
-    height: 80px;
-    width: 200px;
-    z-index: 72;
-    border-radius: 20px;
-    color: white;
-    font-size: 20px;
-    }
-    .loader {
-    animation: rotate 1s infinite;
-    height: 50px;
-    width: 50px;
-    position: absolute;
-    top: 1580px;
-    left: 530px;
-    z-index: 73;
-  }
+        .logo {
+            width: 120px;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
 
-  .loader:before,
-  .loader:after {
-    border-radius: 50%;
-    content: "";
-    display: block;
-    height: 20px;
-    width: 20px;
-  }
-  .loader:before {
-    animation: ball1 1s infinite;
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-controls {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 4%;
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0.8) 100%),
+                        url('avengers.jpg') center/cover;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 650px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-title {
+            font-size: clamp(2rem, 5vw, 4rem);
+            margin-bottom: 1rem;
+            font-weight: 900;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        /* Email Form */
+        .email-form {
+            display: flex;
+            gap: 0.5rem;
+            max-width: 600px;
+            margin-top: 2rem;
+        }
+
+        .email-input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 4px;
+            background: rgba(0,0,0,0.5);
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .email-input:focus {
+            outline: none;
+            border-color: var(--netflix-red);
+            background: rgba(0,0,0,0.7);
+        }
+
+        .submit-btn {
+            padding: 1rem 2rem;
+            background: var(--netflix-red);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: #f40612;
+            transform: scale(1.05);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 4rem 4%;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            padding: 4rem 0;
+            border-bottom: 8px solid #222;
+        }
+
+        .feature-content {
+            flex: 1;
+        }
+
+        .feature-media {
+            flex: 1;
+            position: relative;
+        }
+
+        .feature-title {
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            margin-bottom: 1rem;
+        }
+
+        .feature-desc {
+            font-size: clamp(1rem, 1.5vw, 1.25rem);
+            opacity: 0.8;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .video-wrapper video {
+            width: 100%;
+            height: auto;
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 4rem 4%;
+        }
+
+        .faq-title {
+            text-align: center;
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            margin-bottom: 2rem;
+        }
+
+        .faq-item {
+            margin-bottom: 1rem;
+            background: #303030;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 1.5rem;
+            max-height: 300px;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 4rem 4%;
+            background: rgba(0,0,0,0.9);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: #757575;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #fff;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .feature {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .email-form {
+                flex-direction: column;
+            }
+
+            .nav-controls {
+                display: none;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .animate-delay-1 {
+            animation-delay: 0.2s;
+        }
+
+        .animate-delay-2 {
+            animation-delay: 0.4s;
+        }
+
+
+        .language-select {
+    width: 150px;
+    padding: 8px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    font-size: 16px;
+    color: #333;
+    appearance: none; /* Remove default styling for select */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+}
+
+.language-select:focus {
+    border-color: #007BFF; /* Change border color on focus */
+    outline: none;
+}
+
+.language-select option {
     background-color: #fff;
-    box-shadow: 30px 0 0 #ff3d00;
-    margin-bottom: 10px;
-  }
-  .loader:after {
-    animation: ball2 1s infinite;
-    background-color: #ff3d00;
-    box-shadow: 30px 0 0 #fff;
-  }
-
-  @keyframes rotate {
-    0% { transform: rotate(0deg) scale(0.8) }
-    50% { transform: rotate(360deg) scale(1.2) }
-    100% { transform: rotate(720deg) scale(0.8) }
-  }
-
-  @keyframes ball1 {
-    0% {
-      box-shadow: 30px 0 0 #ff3d00;
-    }
-    50% {
-      box-shadow: 0 0 0 #ff3d00;
-      margin-bottom: 0;
-      transform: translate(15px, 15px);
-    }
-    100% {
-      box-shadow: 30px 0 0 #ff3d00;
-      margin-bottom: 10px;
-    }
-  }
-
-  @keyframes ball2 {
-    0% {
-      box-shadow: 30px 0 0 #fff;
-    }
-    50% {
-      box-shadow: 0 0 0 #fff;
-      margin-top: -20px;
-      transform: translate(15px, 15px);
-    }
-    100% {
-      box-shadow: 30px 0 0 #fff;
-      margin-top: 0;
-    }
-  }
-  #tx17{
-        position: absolute;
-        left: 700px;
-    top: 1300px;
-    color: white;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 60px;
-    font-weight: bold;
-    width: 600px;
-    z-index: 74;
-    }
-    #tx18{
-        position: absolute;
-        left: 700px;
-    top: 1550px;
-    color: white;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 2px;
-    width: 600px;
-    z-index: 74;
-    }
-    #tx19{
-        position: absolute;
-     margin:0;
-    top:1800px;
-    background-color: black;
-    height: 500px;
-    width: 100%;
-    z-index: 75;
-    
-    }
-    #tx20{
-        position: absolute;
-        left: 200px;
-    top: 1920px;
-    color: white;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 60px;
-    font-weight: bold;
-    width: 800px;
-    z-index: 79;
-    }
-    #tx21{
-        position: absolute;
-        left: 200px;
-    top: 2050px;
-    color: white;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 26px;
-    width: 800px;
-    z-index: 79;
-    }
-    #tx22{
-        
-        position: absolute;
-     left: 800px;
-    top: 1800px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-weight: bold;
-    font-size: 25px;
-    color: white;
-    height:400px;
-    width: 600px;
-    z-index: 82;
-    
-    }
-    #tx23{
-        position: absolute;
-     left: 830px;
-    top: 1830px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-weight: bold;
-    font-size: 25px;
-    color: white;
-    height:300px;
-    width: 500px;
-    z-index: 81;
-    
-    }
-#tx24{
-    position: absolute;
-   background-color: black;
-    top: 2310px;
-    height: 600px;
-    z-index: 82;
-
-}
-#tx25{
-    position: absolute;
-   left: 120px;
-    top: 2370px;
-    z-index: 83;
-
-}
-#tx25{
-    position: absolute;
-   left: 120px;
-    top: 2370px;
-    z-index: 83;
-
-}
-#tx26{
-    position: absolute;
-   left: 800px;
-    top: 2430px;
-    z-index: 83;
-    width: 600px;
-    color: white;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-weight: bolder;
-    font-size: 60px;
-    
-
-}
-#tx27{
-    position: absolute;
-   left: 800px;
-    top: 2630px;
-    color: white;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 26px;
-    width: 800px;
-    z-index: 89;
-    
-
-}
-#tx28{
-    position: absolute;
-   left: 350px;
-    top: 2920px;
-    color: white;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 60px;
-    width: 800px;
-    z-index: 91;
-    font-size: 60px;
-    font-weight: bolder;
-    height: 800px;
-    
-
-}
-#tx29{
-    position: absolute;
-   
-   background-color: black;
-    top: 2920px;
-    color: white;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 60px;
-    width: 100%;
-    z-index: 90;
-    
-    height: 1050px;
-}
-.tx30{
-    position: absolute;
-   left: 200px;
-    top: 3100px;
-    color: white;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 30px;
-    width: 800px;
-    z-index: 93;
-    height: 70px;
-    width: 1000px;
-    transition: all 0.2 linear 0.2;
-    background-color: rgb(69, 69, 69);
-    padding-left: 30px;
-    padding-top: 30px;
-    
-    
-}
-.tx30:hover{
-  background-color: #777676;
-  box-shadow: inset 0 0 10px rgb(0, 0, 0);
-  pointer-events: fill;
-}
-.tx31{
-    position: absolute;
-   left: 200px;
-    top: 3210px;
-    color: white;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 30px;
-    width: 800px;
-    z-index: 93;
-    height: 70px;
-    width: 1000px;
-    transition: all 0.2 linear 0.2;
-    background-color: rgb(69, 69, 69);
-    padding-left: 30px;
-    padding-top: 30px;
-    
-    
-}
-.tx31:hover{
-  background-color: #777676;
-  box-shadow: inset 0 0 10px rgb(0, 0, 0);
-  pointer-events: fill;
-}
-.tx32{
-    position: absolute;
-   left: 200px;
-    top: 3320px;
-    color: white;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 30px;
-    width: 800px;
-    z-index: 93;
-    height: 70px;
-    width: 1000px;
-    transition: all 0.2 linear 0.2;
-    background-color: rgb(69, 69, 69);
-    padding-left: 30px;
-    padding-top: 30px;
-    
-    
-}
-.tx32:hover{
-  background-color: #777676;
-  box-shadow: inset 0 0 10px rgb(0, 0, 0);
-  pointer-events: fill;
+    color: #333;
+    font-size: 16px;
 }
 
-.tx33{
-    position: absolute;
-   left: 200px;
-    top: 3430px;
-    color: white;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 30px;
-    width: 800px;
-    z-index: 93;
-    height: 70px;
-    width: 1000px;
-    transition: all 0.3s ease;
-    background-color: rgb(69, 69, 69);
-    padding-left: 30px;
-    padding-top: 30px;
-    
-    
-}
-.tx33:hover{
-  background-color: #777676;
-  box-shadow: inset 0 0 10px rgb(0, 0, 0);
-  pointer-events: fill;
- 
-}
-.tx34{
-    position: absolute;
-   left: 200px;
-    top: 3540px;
-    color: white;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 30px;
-    width: 800px;
-    z-index: 93;
-    height: 70px;
-    width: 1000px;
-    transition: all 0.2 linear 0.2;
-    background-color: rgb(69, 69, 69);
-    padding-left: 30px;
-    padding-top: 30px;
-    
-    
-}
-.tx34:hover{
-  background-color: #777676;
-  box-shadow: inset 0 0 10px rgb(0, 0, 0);
-  pointer-events: fill;
-}
-.tx35{
-    position: absolute;
-   left: 200px;
-    top: 3650px;
-    color: white;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 30px;
-    width: 800px;
-    z-index: 93;
-    height: 70px;
-    width: 1000px;
-    transition: all 0.2 linear 0.2;
-    background-color: rgb(69, 69, 69);
-    padding-left: 30px;
-    padding-top: 30px;
-    
-    
-}
-.tx35:hover{
-  background-color: #777676;
-  box-shadow: inset 0 0 10px rgb(0, 0, 0);
-  pointer-events: fill;
-}
-   #tx36
-   
-  
-{
-  color: white;
-  position: absolute;
-  left: 350px;
-  top:3820px;
-  font-size: 25px;
-  margin: auto;
-  z-index: 111;
-}
-#tx37
-{
-  position: absolute;
-    top: 3880px;
-    left: 450px;
-    background-color: rgba(69, 69, 69, 0.714);
-    height: 50px;
-    width: 400px;
-    color: rgb(255, 255, 255);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 20px;
-    border: 1px solid white;
-    transition: all 0.2 linear 0.2;
-    border-radius: 10px;
-    z-index: 112  ;
-    }
-    #tx37::placeholder {
-  color: white;
-}
-
-#tx38{
-        position: absolute;
-    top: 3880px;
-    left: 870px;
-    background-color: rgb(255, 0, 0);
-    height: 55px;
-    width: 200px;
-    color: rgb(255, 255, 255);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 20px;
-    border:none;
-    font-size: 25px;
-    transition: all 0.2 linear 0.2;
-    border-radius: 10px;
-    z-index: 113;
-    }
-    button:hover{
-        scale: 1.1;
-    }
-    #tx39{
-      background-color: black;
-      height: 450px;
-      width: 100%;
-      position: absolute;
-      top: 3980px;
-
-    }
-    .tx40{
-      position: absolute;
-      top: 4070px;
-      font-size: 20px;
-      left: 200px;
-      z-index: 115;
-      color: white;
-      line-height: 40px;
-    }
-    a{
-      text-decoration: none;
-      font-size: 20px;
-      color: rgb(183, 183, 183);
-
-    }
-    #tx41{
-      position: absolute;
-   background-color: transparent;
-   color: white;
-    
-      top: 700pxpx;
-      height: 50px;
-      width: 200px;
-      border-radius: 10px;
-      font-size: 20px;
-     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
-    }
-    #tx42{
-      position: absolute;
-    
-      font-size: 20px;
-      left: 400px;
-      bottom: 0px;
-      top: 80px;
-      z-index: 205;
-      color: white;
-      line-height: 40px;
-      width: 200px;
-    }
-    a{
-      text-decoration: none;
-      font-size: 20px;
-      font-family: 'Times New Roman', Times, serif;
-      color: rgb(183, 183, 183);
-
-    }
-    #tx43{
-      position: absolute;
-    
-      font-size: 20px;
-      left: 700px;
-      bottom: 0px;
-      top: 80px;
-      z-index: 205;
-      color: white;
-      line-height: 40px;
-      width: 200px;
-    }
-    a{
-      text-decoration: none;
-      font-size: 17px;
-      font-weight: bold;
-      font-family:Georgia, 'Times New Roman', Times, serif;
-      color: rgb(183, 183, 183);
-
-    }
-    #tx44{
-      position: absolute;
-    
-      font-size: 20px;
-      left: 1000px;
-      bottom: 0px;
-      top: 80px;
-      z-index: 205;
-      color: white;
-      line-height: 40px;
-      width: 200px;
-    }
-    #tx45{
-      position: absolute;
-    
-      font-size: 16px;
-      
-      bottom: 0px;
-     top: 300px;
-      z-index: 205;
-      color: white;
-      line-height: 40px;
-      width: 200px;
-      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    }
-    
- </style>
+    </style>
 </head>
 <body>
-    <nav id="ttr">
-        <img class="ty1" src="../nt2.jpg" height="700px" width="100%">
-        
-    </nav>
-    <img id="tx1" src="C:\Users\reddy\Downloads\wp4536531-removebg-preview.png" height="110px" width="200px">
-    <select style="color: rgb(255, 255, 255);" name="lang" id="lang">
-        <option value="Languages">English</option>
-        <option value="telugu">telugu</option>
-        <option value="kannda">kannda</option>
-        <option value="hindhi">hindhi</option>
-    </select>     
-    <button id="tx2">Sign In</button>
-    <h1 id="tx3">Unlimited movies, TV shows and more</h1>
-    <p id="tx4">Watch anywhere. Cancel anytime.</p>
-    
-<p id="tx5">Ready to watch? Enter your email to create or restart your membership.</p>
-<input id="tx6" type="text" placeholder="Enter your email">
-<button id="tx7">Get Started ></button>
-<p id="tx8">Enjoy on your TV</p>
-<div></div>
-<p id="tx9">Watch on smart TVs, PlayStation, Xbox,<br> Chromecast, Apple TV, Blu-ray players and more.</p>
-<img id="tx10" src="../tv.png" >
-<video id="tx11" src="../BERLIN___Official_Trailer___Netflix(1080p).mp4" loop muted  autoplay  ></video>
-
-<div id="tx12">
-
-</div>
-<img id="tx13" src="../stranger thimgs.jpg">
-<img id="tx14">
-<img id="tx15" src="../strngee.jpg">
-<p id="tx16">Stranger Things
-   <br><b style="color: rgb(0, 94, 255);"> Downloading...</b></p>
-   <span class="loader"></span>
-   <h1 id="tx17">Download your shows to watch offline</h1>
-   <p id="tx18">Save your favourites easily and always <br>have something to watch.</p>
-   <div id="tx19"></div>
-   <h1 id="tx20">Watch everywhere</h1>
-   <p id="tx21">Stream unlimited movies and TV shows on your phone,<br>
-     tablet, laptop, and TV.</p>
-     <img id="tx22" src="../tv.png"  >
-     <video id="tx23" src="../marvel2.mp4" controls  muted autoplay loop ></video>
-     <div id="tx24"></div>
-     <img id="tx25" src="../children.png">
-     <h1 id="tx26">Create profiles for kids</h1>
-<p id="tx27">Send children on adventures with their favourite<br> characters in a space made just for them—free with<br> your membership.</p>
-<center>
-    <p id="tx28">Frequently Asked Questions</p>
-</center>
-<div id="tx29"></div>
-<p class="tx30">What is Netflix<i id="ttc">+</i></p>
-     <div id="tx01">
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, doloribus?</p>
+    <nav class="nav">
+        <img src="netflix-logo-transparent-free-png.webp" alt="Netflix" class="logo">
+        <div class="nav-controls">
+            <select class="language-select">
+                <option value="en">English</option>
+                <option value="es">Español</option>
+            </select>
+            <button class="submit-btn">Sign In</button>
         </div>
-<p class="tx31">How much does netflik cost</p>
-<p class="tx32">Where can i watch</p>
-<p class="tx33">How do I Cancel the Plan</p>
-<p class="tx34">What can I watch on Netflix?</p>
-<p class="tx35">Is netflik is good for kids?</p>
-<p id="tx36">Ready to watch? Enter your email to create or restart your membership.</p>
-<input id="tx37" type=" text"  placeholder="Enter your email">
-<button id="tx38">Get Started</button>
-<div id="tx39"></div>
-<nav class="tx40">
-  <p>Questions? Call 000-800-919-1694
-  </p>
-  <a href="#">Faq</a><br>
-  <a href="#">Security</a><br>
-  <a href="#">Play</a><br>
-  <a href="#">Terms and conditions</a><br>
-  <nav id="tx42"> 
-    <a href="#">I am Baatman</a>
-    <a href="#">Sigma</a><br>
-    <a href="#">Drew</a><br>
-    <a href="#">Patrick batman</a><br>
-  </nav>
-  <nav id="tx43"> 
-    <a href="#">Ryan Gosling</a>
-    <a href="#">Peter parker</a><br>
-    <a href="#">American Pyseco</a><br>
-    <a href="#">Patrick batman</a><br>
-  </nav>
-  <nav id="tx44"> 
-    <a href="#">Jhon wick</a>
-    <a href="#">Jhon wick</a><br>
-    <a href="#">Passengers</a><br>
-    <a href="#">Squid Game</a><br>
-  
-  </nav>
-  <nav id="tx45">
-    Netflik India
-  </nav>
+    </nav>
 
-  <select style="color: rgb(255, 255, 255);" name="lang" id="tx41">
-    <option value="Languages">*A English</option>
-    <option value="telugu">telugu</option>
-    <option value="kannda">kannda</option>
-    <option value="hindhi">hindhi</option>
-    
-</p>
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title animate-fade-in">Unlimited movies, TV shows, and more</h1>
+            <p class="hero-subtitle animate-fade-in animate-delay-1">Watch anywhere. Cancel anytime.</p>
+            <form class="email-form animate-fade-in animate-delay-2">
+                <input type="email" class="email-input" placeholder="Email address">
+                <button type="submit" class="submit-btn">Get Started ></button>
+            </form>
+        </div>
+    </section>
 
-</nav>
-<nav id="tx42">
-  <a href="#">Faq</a><br>
-  <a href="#">Security</a><br>
-  <a href="#">Play</a><br>
-  <a href="#">Terms and conditions</a><br>
-</nav>
+    <section class="features">
+        <div class="feature">
+            <div class="feature-content">
+                <h2 class="feature-title">Enjoy on your TV</h2>
+                <p class="feature-desc">Watch on Smart TVs, Playstation, Xbox, Chromecast, Apple TV, Blu-ray players, and more.</p>
+            </div>
+            <div class="feature-media">
+                <div class="video-wrapper">
+                    <video autoplay loop muted playsinline>
+                        <source src="Snapsave.app_C249C58840CB77CBC8070843F4D7118B_video_dashinit.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </div>
+        <!-- More features... -->
+    </section>
+
+    <section class="faq">
+        <h2 class="faq-title">Frequently Asked Questions</h2>
+        <div class="faq-list">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What is Netflix?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Netflix is a streaming service that offers a wide variety of award-winning TV shows, movies, anime, documentaries, and more on thousands of internet-connected devices.</p>
+                </div>
+            </div>
+            <!-- More FAQ items... -->
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <ul class="footer-links">
+                <li><a href="#">FAQ</a></li>
+                <li><a href="#">Help Center</a></li>
+                <li><a href="#">Account</a></li>
+                <li><a href="#">Media Center</a></li>
+            </ul>
+            <!-- More footer columns... -->
+        </div>
+    </footer>
+
+    <script>
+        // Navigation scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // FAQ accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                document.querySelectorAll('.faq-item').forEach(otherItem => {
+                    if (otherItem !== item) otherItem.classList.remove('active');
+                });
+                item.classList.toggle('active');
+            });
+        });
+
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.feature, .faq-item').forEach(el => observer.observe(el));
+    </script>
 </body>
 </html>
