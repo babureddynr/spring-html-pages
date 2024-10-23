@@ -1,981 +1,384 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <title>BMW main page</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+    <title>BMW - Sheer Driving Pleasure</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        body{
-            background-color: white;
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'BMW Type Next', Arial, sans-serif;
+        }
+
+        body {
+            background: #ffffff;
+            color: #262626;
             overflow-x: hidden;
-            background-attachment: scroll;
         }
-        nav{
-            height:100px;
-            width: 100%;
-         display: flex;
-            align-items: center;
-            justify-content: space-evenly;
-            background-color: rgb(255, 255, 255);
-            color: rgb(0, 0, 0);
-           
 
-        }
-        #tx0{
-            position: relative;
-            right: 120px;
+        /* Navigation */
+        nav {
             position: fixed;
-         
-            
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            z-index: 1000;
+            transition: background 0.3s;
         }
-        a{
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
             text-decoration: none;
-            color: rgb(59, 59, 59);
-            font-size: 20px;
-            font-family: 'Times New Roman', Times, serif;
-            
+            color: #262626;
+            font-weight: 500;
+            transition: color 0.3s;
         }
-        a:hover{
-         
-          color: rgb(24, 0, 182);
-          scale: 1.01;
-        
-        }
-    
 
-        #tx1{
-            position:relative;
-            right: 80px;
-            
+        .nav-links a:hover {
+            color: #1c69d4;
         }
-        #tx2{
+
+        .nav-icons {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
             position: relative;
-            right: 140px;
+            height: 100vh;
+            overflow: hidden;
         }
-        #tx3{
+
+        .hero video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-content {
+            position: absolute;
+            top: 50%;
+            left: 10%;
+            transform: translateY(-50%);
+            color: white;
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin: 1rem 0;
+            animation: slideIn 1s ease-out;
+        }
+
+        /* Shopping Tools Section */
+        .shopping-tools {
+            padding: 4rem 2rem;
+            background: #f6f6f6;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .tool-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 4px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Button Styles */
+        .bmw-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: #1c69d4;
+            color: white;
+            border: none;
+            border-radius: 2px;
+            cursor: pointer;
+            transition: background 0.3s;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .bmw-button:hover {
+            background: #0653b6;
+        }
+
+        /* Featured Models */
+        .featured {
+            padding: 4rem 2rem;
+        }
+
+        .model-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .model-card {
             position: relative;
-            right: 200px;
+            overflow: hidden;
+            border-radius: 4px;
         }
-        #tx4{
-            position: relative;
-            right: 250px;
+
+        .model-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.3s;
         }
-        #tx5{
-            position: relative;
-            right: 300px;
+
+        .model-card:hover img {
+            transform: scale(1.05);
         }
-        video{
-            width: 1500px;
-            background-size: cover;
+
+        /* Footer */
+        footer {
+            background: #262626;
+            color: white;
+            padding: 4rem 2rem;
         }
-#tx6{
-    position: absolute;
-    bottom: 280px;
-    color: white;
-    left: 180px;
-}
-#tx7{
-    position: absolute;
-    bottom: 150px;
-    color: white;
-    left: 150px;
-    font-size: 78px;
-}
-#tx8{
-    position: absolute;
-    bottom: 130px;
-    color: white;
-    left: 140px;
-    font-size: 30px;
-}
-#tx9{
-    position: absolute;
-    bottom: 70px;
-    color: rgb(255, 255, 255);
-    left: 160px;
-    font-size: 30px;
-    background-color: rgb(0, 153, 255);
-    text-decoration: none;
-    height: 60px;
-    width: 300px;
-    border: 1px solid rgb(0, 167, 201);
-}
-#tx10{
-    border-color: white;
-}
- #tx11{
-    position: absolute;
-    top: 1300px;
-    left: 250px;
-    z-index: 11;
-     color: white;
-    font-size: 20px;
-    
-}
-#tx12{
-    position: absolute;
-    top: 1250px;
-    bottom: 90px;
-    left: 120px;
-    z-index: 20;
-     color: white;
-    font-size: 100px;
-    
-}
-#tx13{
-    position: absolute;
-    top: 1430px;
-    bottom: 120px;
-    left: 120px;
-    z-index: 20;
-     color: white;
-    font-size: 30px;
-    word-spacing: 10px;
-    letter-spacing: 4px;
-    
-}
-#tx115{
-    height: 50px;
-    width: 350px;
-    position: absolute;
-   top: 1510px;
-    color: rgb(255, 255, 255);
-    left: 140px;
-    font-size: 30px;
-    background-color: rgb(0, 153, 255);
-    text-decoration: none;
-   z-index: 44;
-    border: 1px solid rgb(0, 167, 201);
-  
-   
-    
-}
-#tx14{
-  height: 400px;
-  width: 100%;
-   
-    z-index: 20;
-     color: rgb(0, 0, 0);
-    font-size: 30px;
-    word-spacing: 10px;
-    letter-spacing: 4px;
-    justify-content: center;
-    align-items: center;
-    background-color: white;
-position: absolute;
-left: 500px;
-    
-}
-#tx15{
-  height: 400px;
-  width: 100%;
-   
-    z-index: 20;
-     color: rgb(0, 0, 0);
-    font-size: 80px;
-    word-spacing: 10px;
-    letter-spacing: 4px;
-    justify-content: center;
-    align-items: center;
-    background-color: white;
-position: absolute;
-left: 350px;
-    
-}
-#tx16{
- 
-   
-    z-index: 24;
-     color: rgb(0, 0, 0);
-    font-size: 80px;
-    word-spacing: 10px;
-    letter-spacing: 4px;
-    justify-content: center;
-    align-items: center;
-    background-color: white;
-position: absolute;
-left: 10px;
-top: 2000px;
-background-color: #3d373700;
-    
-}
-.img{
-    animation: fade 2s infinite;}
-@keyframes fadeIn{
-    0%{ opacity: 0;}
-    
-}
-#tx17{
- 
-   
- z-index: 24;
-  color: rgb(0, 0, 0);
- font-size: 80px;
- word-spacing: 10px;
- letter-spacing: 4px;
- justify-content: center;
- align-items: center;
- background-color: white;
-position: absolute;
-left: 500px;
-top: 2000px;
-background-color: transparent;
- 
-}
-#tx18{
- 
-   
- z-index: 24;
-  color: rgb(0, 0, 0);
- font-size: 80px;
- word-spacing: 10px;
- letter-spacing: 4px;
- justify-content: center;
- align-items: center;
- background-color: white;
-position: absolute;
-left: 1000px;
-top: 2000px;
-background-color: transparent;
- 
-}
-#tx19{
- 
-   
- z-index: 24;
-  color: rgb(0, 0, 0);
- font-size: 30px;
- justify-content: center;
- align-items: center;
- background-color: white;
-position: absolute;
-left: 140px;
-top: 2160px;
-background-color: transparent;
- 
-}
-#tx20{
- 
-   
- z-index: 24;
-  color: rgb(0, 0, 0);
- font-size: 30px;
- justify-content: center;
- align-items: center;
- background-color: white;
-position: absolute;
-left: 600px;
-top: 2160px;
-background-color: transparent;
- 
-}
-#tx21{
- 
-   
- z-index: 24;
-  color: rgb(0, 0, 0);
- font-size: 30px;
- justify-content: center;
- align-items: center;
- background-color: white;
-position: absolute;
-left: 1100px;
-top: 2160px;
-background-color: transparent;
- 
-}
-#tx22{
- 
-   
- height: 60px;
- width: 250px;
- background-color: transparent;
- color: black;
- position: absolute;
- top: 2250px;
- left: 100px;
- 
-}
-#tx23{
- 
-   
- height: 60px;
- width: 250px;
- background-color: transparent;
- color: black;
- position: absolute;
- top: 2250px;
- left: 600px;
- z-index: 33;
- 
-}
-#tx24{
- 
-   
- height: 60px;
- width: 250px;
- background-color: transparent;
- color: black;
- position: absolute;
- top: 2250px;
- left: 1100px;
- z-index: 33;
- 
-}
-#tx25{
- 
-   
-height: 550px;
-width: 1500px;
- background-color: transparent;
- color: black;
- position: absolute;
- top: 2400px;
- left: 10px;
- z-index: 34;
- 
-}
-#tx26{
- 
-   font-size: 70px;
-  background-color:;
-  color: rgb(255, 255, 255);
-  position: absolute;
-  top: 2500px;
-  left: 70px;
-  z-index: 35;
-}
-#tx27{
- height: 50px;
- width: 300px;
- font-size: 20px;
-background-color: transparent;
-color: rgb(255, 255, 255);
-position: absolute;
-top: 2750px;
-left: 80px;
-z-index: 38;
-border: 2px solid  white;
 
-}
-#tx28{
-
- height: 380px;
- width: 750px;
-background-color:#c1c1c1;
-position: absolute;
-top: 2990px;
-left: 80px;
-z-index: 38;
-
-
-}
-#tx29{
- height: 50px;
- width: 300px;
- font-size: 20px;
-background-color: transparent;
-color: rgb(0, 0, 0);
-position: absolute;
-top: 3050px;
-left: 850px;
-z-index: 38;
-font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-
-}
-#tx30{
- height: 50px;
- width: 600px;
- font-size: 50px;
-background-color: transparent;
-color: rgb(0, 0, 0);
-position: absolute;
-top: 3070px;
-left: 850px;
-z-index: 38;
-font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-
-}
-#tx31{
- height: 50px;
- width: 600px;
- font-size: 20px;
-background-color: transparent;
-color: rgb(0, 0, 0);
-position: absolute;
-top: 3240px;
-left: 850px;
-z-index: 38;
-font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-
-}
-#tx32{
- height: 50px;
- width: 300px;
- font-size: 20px;
-color: rgb(0, 0, 0);
-position: absolute;
-top: 3320px;
-left: 850px;
-z-index: 38;
-background-color: transparent;
-
-border: 2px solid  rgb(0, 0, 0);
-
-}
-#tx33{
- height: 380px;
- width: 750px;
- font-size: 20px;
-background-color: #c1c1c1;
-
-color: rgb(0, 0, 0);
-position: absolute;
-top: 3420px;
-left: 85px;
-z-index: 38;
-
-
-}
-#tx34{
- height: 50px;
- width: 600px;
- font-size: 20px;
-background-color: transparent;
-color: rgb(0, 0, 0);
-position: absolute;
-top: 3460px;
-left: 850px;
-z-index: 38;
-font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-
-}
-#tx35{
- height: 50px;
- width: 600px;
- font-size: 70px;
-background-color: transparent;
-color: rgb(0, 0, 0);
-position: absolute;
-top: 3460px;
-left: 850px;
-z-index: 38;
-font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-
-}
-#tx36{
- height: 50px;
- width: 600px;
- font-size: 20px;
-background-color: transparent;
-color: rgb(0, 0, 0);
-position: absolute;
-top: 3620px;
-left: 850px;
-z-index: 38;
-font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-
-}
-#tx37{
- height: 50px;
- width: 300px;
- font-size: 20px;
-background-color: transparent;
-color: rgb(0, 0, 0);
-position: absolute;
-top: 3700px;
-left: 850px;
-z-index: 38;
-border: 2px solid  rgb(0, 0, 0);
-
-}
-#tx38{
-    padding-top: 30px;
-    padding-left: 20px;
- height: 50px;
- width: 93%;
- font-size: 20px;
-background-color: transparent;
-color: rgb(0, 0, 0);
-position: absolute;
-top: 3820px;
-left: 80px;
-z-index: 38;
-font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-border: 1px solid black;
-
-}
-#tx39{
-    padding-top: 30px;
-    padding-left: 20px;
- height: 50px;
- width: 93%;
- font-size: 20px;
-background-color: transparent;
-color: rgb(0, 0, 0);
-position: absolute;
-top: 3820px;
-left: 260px;
-z-index: 38;
-font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-
-}
-#tx40{
-    background-color: #b5b5b5;
-   padding-left: 100px;
-   padding-top: 60px;
- height: 360px;
- width: 100%;
- font-size: 15px;
-
-color: rgb(0, 0, 0);
-position: absolute;
-top: 3980px;
-left: 0px;
-z-index: 38;
-font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-
-}
-#tx41{
-    background-color: #b5b5b500;
-   padding-left: 100px;
-   padding-top: 60px;
- height: 450px;
- width: 100%;
- font-size: 15px;
-
-color: rgb(0, 0, 0);
-position: absolute;
-top: 3980px;
-left: 350px;
-z-index: 38;
-font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-
-}
-#tx42{
-    background-color: #b5b5b500;
-   padding-left: 100px;
-   padding-top: 60px;
- height: 450px;
- width: 100%;
- font-size: 15px;
-
-color: rgb(0, 0, 0);
-position: absolute;
-top: 3980px;
-left:700px;
-z-index: 38;
-font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-
-}
-#tx43{
-    background-color: #b5b5b500;
-   padding-left: 100px;
-   padding-top: 60px;
- height: 450px;
- width: 100%;
- font-size: 15px;
-
-color: rgb(0, 0, 0);
-position: absolute;
-top: 3980px;
-left:1100px;
-z-index: 38;
-font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-
-}
-
-#tx44{
-    background-color: #b5b5b500;
- 
- height: 450px;
- width: 100%;
- font-size: 15px;
-
-color: rgb(0, 0, 0);
-position: absolute;
-top: 4100px;
-left:100px;
-z-index: 38;
-font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-
-}
-
-#tx45{
-    background-color: #b5b5b500;
- 
- height: 450px;
- width: 100%;
- font-size: 15px;
-
-color: rgb(0, 0, 0);
-position: absolute;
-top: 4140px;
-left:100px;
-z-index: 38;
-font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-
-}
-#tx46{
-    background-color: #b5b5b500;
- 
- height: 450px;
- width: 100%;
- font-size: 15px;
-
-color: rgb(0, 0, 0);
-position: absolute;
-top: 4180px;
-left:100px;
-z-index: 38;
-font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-
-}
-#tx47{
-    background-color: #b5b5b500;
- 
- height: 450px;
- width: 100%;
- font-size: 15px;
-
-color: rgb(0, 0, 0);
-position: absolute;
-top: 4220px;
-left:100px;
-z-index: 38;
-font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-
-}
-#tx48{
-    background-color: #b5b5b500;
-   padding-left: 100px;
-   padding-top: 60px;
- height: 450px;
- width: 100%;
- font-size: 15px;
-
-color: rgb(0, 0, 0);
-position: absolute;
-top: 4030px;
-left: 350px;
-z-index: 38;
-font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-
-}
-#tx49{
-    background-color: #b5b5b500;
-   padding-left: 100px;
-   padding-top: 60px;
- height: 450px;
- width: 100%;
- font-size: 15px;
-
-color: rgb(0, 0, 0);
-position: absolute;
-top: 4070px;
-left: 350px;
-z-index: 38;
-font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-
-}
-#tx50{
-    background-color: #b5b5b500;
-   padding-left: 100px;
-   padding-top: 60px;
- height: 450px;
- width: 100%;
- font-size: 15px;
-
-color: rgb(0, 0, 0);
-position: absolute;
-top: 4110px;
-left: 350px;
-z-index: 38;
-font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-
-}
-#tx51{
-    background-color: #b5b5b500;
-   padding-left: 100px;
-   padding-top: 60px;
- height: 450px;
- width: 100%;
- font-size: 15px;
-
-color: rgb(0, 0, 0);
-position: absolute;
-top: 4150px;
-left: 350px;
-z-index: 38;
-font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-
-}
-#tx52{
-    background-color: #b5b5b500;
-   padding-left: 100px;
-   padding-top: 60px;
- height: 450px;
- width: 100%;
- font-size: 15px;
-
-color: rgb(0, 0, 0);
-position: absolute;
-top: 4180px;
-left: 350px;
-z-index: 38;
-font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-
-}
-#tx53{
-    background-color: #b5b5b500;
-   padding-left: 100px;
-   padding-top: 60px;
- height: 450px;
- width: 100%;
- font-size: 15px;
-
-color: rgb(0, 0, 0);
-position: absolute;
-top: 4030px;
-left:700px;
-z-index: 38;
-font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-
-}
-#tx54{
-    background-color: #b5b5b500;
-   padding-left: 100px;
-   padding-top: 60px;
- height: 450px;
- width: 100%;
- font-size: 15px;
-
-color: rgb(0, 0, 0);
-position: absolute;
-top: 4060px;
-left:700px;
-z-index: 38;
-font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-
-}
-#tx55{
-    background-color: #b5b5b500;
-   padding-left: 100px;
-   padding-top: 60px;
- height: 450px;
- width: 100%;
- font-size: 15px;
-
-color: rgb(0, 0, 0);
-position: absolute;
-top: 4100px;
-left:700px;
-z-index: 38;
-font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-
-}
-#tx56{
-    background-color: #b5b5b500;
-   padding-left: 100px;
-   padding-top: 60px;
- height: 450px;
- width: 100%;
- font-size: 15px;
-
-color: rgb(0, 0, 0);
-position: absolute;
-top: 4020px;
-left:1100px;
-z-index: 38;
-font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-
-}
-#tx57{
-    background-color: #b5b5b500;
-   padding-left: 100px;
-   padding-top: 60px;
- height: 450px;
- width: 100%;
- font-size: 15px;
-
-color: rgb(0, 0, 0);
-position: absolute;
-top: 4020px;
-left:1100px;
-z-index: 38;
-font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-
-}
-#tx58{
-    background-color: #b5b5b500;
-   padding-left: 100px;
-   padding-top: 60px;
- height: 450px;
- width: 100%;
- font-size: 15px;
-
-color: rgb(0, 0, 0);
-position: absolute;
-top: 4046px;
-left:1100px;
-z-index: 38;
-font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-
-}
-#tx59{
-    background-color: #b5b5b500;
-   padding-left: 100px;
-   padding-top: 60px;
- height: 450px;
- width: 100%;
- font-size: 15px;
-
-color: rgb(0, 0, 0);
-position: absolute;
-top: 4300px;
-left:120px;
-z-index: 38;
-font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-word-spacing: 20px;
-
-}
-#tx60{
-    background-color: #b5b5b500;
-   padding-left: 100px;
-   padding-top: 60px;
- height: 30px;
- width: 100%;
- font-size: 10px;
-
-color: rgb(0, 0, 0);
-position: absolute;
-top: 4380px;
-left:120px;
-z-index: 38;
-font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-word-spacing: 10px;
-
-
-}
-#tx61{
-    background-color: #b5b5b500;
-   padding-left: 100px;
-   padding-top: 60px;
- height: 40px;
- width: 100%;
- font-size: 13px;
-
-color: rgb(0, 0, 0);
-position: absolute;
-top: 4360px;
-left:950px;
-z-index: 38;
-font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-word-spacing: 10px;
-
-
-}
-#tx1:active::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background-color: #ff0000;
-    box-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000, 0 0 15px #ff0000, 0 0 20px #ff0000;
-}
-  </style>
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        /* Animations */
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: white;
+                flex-direction: column;
+                padding: 2rem;
+                transition: 0.3s;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .model-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-      <nav>
-        <img  id-=tx0 src="https://www.bmw.in/content/dam/bmw/common/images/logo-icons/BMW/BMW_Grey-Colour_RGB.SVG.asset.1697707041685.SVG"  width="80px" height="60px">
-        <a id="tx1" href="" ><b>Models</b></a>
-        <a  id=tx2 href="" ><b>Electonic</b></a>
-        <a id="tx3" href="" ><b>Configuration</b></a>
-        <a id="tx4" href="" ><b>Visit online shop</b></a>
-        <a id="tx5" href="" ><b>More BMW</b></a>
-        <i class="fa-solid fa-house" style="color: #000000;"></i>
-        <i class="fa-solid fa-user" style="color: #000000;"></i>
-        <i class="fa-solid fa-magnifying-glass" style="color: #000000;"></i>
+    <nav>
+        <img src="https://www.bmw.in/content/dam/bmw/common/images/logo-icons/BMW/BMW_Grey-Colour_RGB.SVG.asset.1697707041685.SVG" alt="BMW Logo" width="80" height="60">
+        <div class="nav-links">
+            <a href="#">Models</a>
+            <a href="#">Electric</a>
+            <a href="#">Configuration</a>
+            <a href="#">Online Shop</a>
+            <a href="#">More BMW</a>
+        </div>
+        <div class="nav-icons">
+            <i class="fa-solid fa-house"></i>
+            <i class="fa-solid fa-user"></i>
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </nav>
-        <video id="tx10" src="../bmw1video.mp4"  height="70%" width="150%"  autoplay muted  loop ></video>
-        <h3 id="tx6">THE FIRST FULLY ELECTRIC</h3>
-       <h1 id="tx7">BMW iX1</h1>
-       <h1 id="tx8">CHARGE HEAD EXCEED.</h1>
-       <button id="tx9"><b>Discover now</b></button>
-       <video src="../video2 for bmw.mp4"  height="70%" width="150%" autoplay muted  loop ></video>
-<p id="tx11"> <b>THE NEW</b></p>
-<p id="tx12">BMW X5</p>
-<p id="tx13">CRAFTED SUPERMACY</p>
-<p id="tx14">SHOPPING TOOLS</p>
-<p id="tx15">FIND YOUR BMW</p>
-<button id="tx115"><b>configure & price</b></button>
-<img id="tx16" src="C:\Users\reddy\Downloads\NxW_Home_ICON_STOCK_CAR-removebg-preview.png" height="200px" width="450px">
-<img id="tx17" src=c:\Users\reddy\Downloads\NxW_Home_ICON_USED_CAR-removebg-preview.png height="200px" width="450px">
-<img id="tx18" src="C:\Users\reddy\Downloads\NxW_Home_ICON_CON-removebg-preview.png" height="200px" width="450px">
-<p id="tx19">Find a new car</p>
-<p id="tx20">Book a Test Drive</p>
-<p id="tx21">Build Your Own</p>
-<button id="tx22"><b>Serch Now</b></button>
-<button id="tx23"><b>Request a Test Drive</b></button>
-<button id="tx24"><b>Configure & Price</b></button>
-<img id="tx25" src="../bm111.jpg">
-<p id="tx26">THIS IS FORWARDISM:
-    <br>THE 7.
-</p>
-<button id="tx27"><b>Know More</b></button>
-<img id="tx28" src="../bruce 1" height="400px" width="600px">
-<p id="tx29"><b>BMW ELECTRIFIED</b></p>
-<p id="tx30">THE JOY OF ELECTRIC<br> DRIVING</p>
-<p id="tx31">100 % electric. 100 % driving pleasure. 100 % BMW. Experience an entirely new sensation of sheer driving pleasure.</p>
-<button id="tx32">Know More</button>
-<img id="tx33" src="../bruce2">
-<p id="tx34"><b>BMW FINANCIAL SERVICES</b></p>
-<p id="tx35">BMW Special Offers</p>
-<p id="tx36">Check out a variety of BMW finance offers available across the BMW range</p>
-<button id="tx37">Know More</button>
-<p id="tx38">FIND YOUR BMW</p>
-<p id="tx39">All Models</p>
-<p id="tx40">CONTACT</p>
-<p id="tx41">QUICK LINKS</p>
-<p id="tx42">EXPERIENCE BMW</p>
-<p id="tx43">LEGAL</p>
 
+    <section class="hero">
+        <video autoplay muted loop>
+            <source src="bmw video.mp4" type="video/mp4">
+        </video>
+        <div class="hero-content">
+            <h3>THE FIRST FULLY ELECTRIC</h3>
+            <h1>BMW iX1</h1>
+            <h1>CHARGE AHEAD. EXCEED.</h1>
+            <a href="#" class="bmw-button">Discover Now</a>
+        </div>
+    </section>
 
-<a id="tx44" href=""> <b>Find a Delaer</b></a>
-<a id="tx45" href=""> <b>Request a Test Drive</b></a>
-<a id="tx46" href=""> <b>Carrers</b></a>
-<a id="tx47" href=""> <b>Contact US</b></a>
-<a id="tx48" href=""> <b>Build your BMW</b></a>
-<a id="tx49" href=""> <b>BMW finacial services</b></a>
-<a id="tx50" href=""> <b>BMW Saftey</b></a>
-<a id="tx51" href=""> <b>BMW Calculator</b></a>
-<a id="tx52" href=""> <b>BMW used cars (high value)</b></a>
-<a id="tx53" href=""> <b>BMW Group</b></a>
-<a id="tx54" href=""> <b>BMW exceess</b></a>
-<a id="tx55" href=""> <b>BMW Network</b></a>
-<a id="tx56" href=""> <b>Legal Disclamiers/imprint</b></a>
-<a id="tx58" href=""> <b>Privacy policy</b></a>
-<h1 id="tx59">
-    <i class="fa-brands fa-facebook" style="color: #000000;"></i>
-    <i class="fa-brands fa-instagram" style="color: #000000;"></i>
-    <i class="fa-brands fa-youtube" style="color: #000000;"></i>
-    <i class="fa-brands fa-linkedin" style="color: #000000;"></i>
-    <i class="fa-solid fa-x" style="color: #000000;"></i>
-</h1>
-<h4 id="tx60"> 
-    <i class="fa-solid fa-copyright" style="color: #000000;"><b>-BMW AUG 2024</b></i>
-    
-</h4>
-<h5 id="tx61">
-    <p>Legal-Disclaimer/Import Privacy-policy Contact-US</p>
+    <section class="shopping-tools">
+        <h2>SHOPPING TOOLS</h2>
+        <div class="tools-grid">
+            <div class="tool-card">
+                <img src="bmw image 1.jpeg" alt="Find New Car">
+                <h3>Find a New Car</h3>
+                <a href="#" class="bmw-button">Search Now</a>
+            </div>
+            <div class="tool-card">
+                <img src="bmw image 2.jpeg" alt="Test Drive">
+                <h3>Book a Test Drive</h3>
+                <a href="#" class="bmw-button">Request Test Drive</a>
+            </div>
+            <div class="tool-card">
+                <img src="bmw image 3.jpeg" alt="Build Your Own">
+                <h3>Build Your Own</h3>
+                <a href="#" class="bmw-button">Configure & Price</a>
+            </div>
+        </div>
+    </section>
 
-</h5>
+    <section class="featured">
+        <h2>FEATURED MODELS</h2>
+        <div class="model-grid">
+            <div class="model-card">
+                <img src="bmw iamge 4.jpeg" alt="BMW X5">
+                <div class="model-content">
+                    <h3>THE NEW BMW X5</h3>
+                    <p>CRAFTED SUPREMACY</p>
+                    <a href="#" class="bmw-button">Learn More</a>
+                </div>
+            </div>
+            <div class="model-card">
+                <img src="bmw image 6.webp" alt="BMW 7 Series">
+                <div class="model-content">
+                    <h3>THE 7</h3>
+                    <p>THIS IS FORWARDISM</p>
+                    <a href="#" class="bmw-button">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <h4>FIND YOUR BMW</h4>
+                <ul>
+                    <li>Find a Dealer</li>
+                    <li>Request a Test Drive</li>
+                    <li>Build Your BMW</li>
+                </ul>
+            </div>
+            <div>
+                <h4>QUICK LINKS</h4>
+                <ul>
+                    <li>BMW Financial Services</li>
+                    <li>BMW Safety</li>
+                    <li>BMW Calculator</li>
+                </ul>
+            </div>
+            <div>
+                <h4>LEGAL</h4>
+                <ul>
+                    <li>Legal Disclaimer</li>
+                    <li>Privacy Policy</li>
+                    <li>Contact Us</li>
+                </ul>
+            </div>
+        </div>
+        <div class="social-icons">
+            <i class="fab fa-facebook"></i>
+            <i class="fab fa-instagram"></i>
+            <i class="fab fa-youtube"></i>
+            <i class="fab fa-linkedin"></i>
+            <i class="fab fa-twitter"></i>
+        </div>
+        <p class="copyright">© BMW AG 2024</p>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.background = 'rgba(255, 255, 255, 0.95)';
+            } else {
+                nav.style.background = 'rgba(255, 255, 255, 0.8)';
+            }
+        });
+
+        // Hamburger menu
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        });
+
+        document.querySelectorAll('.tool-card, .model-card').forEach((el) => observer.observe(el));
+    </script>
 </body>
 </html>
