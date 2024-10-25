@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Monitoring App</title>
+    <style>
+        /* Basic styling */
+        body { font-family: Arial, sans-serif; background-color: #e0f7fa; }
+        h1 { color: #00796b; text-align: center; }
+        select, button { padding: 10px; font-size: 16px; margin: 10px 0; }
+        #weatherInfo { margin-top: 20px; padding: 20px; background-color: #ffffff; border-radius: 5px; }
+        .weather-detail { margin: 5px 0; }
+    </style>
+</head>
+<body>
+    <h1>Weather Monitoring App</h1>
+    <select id="citySelect">
+        <option value="">--Select a City--</option>
+        <option value="Mumbai">Mumbai</option>
+        <option value="Hyderabad">Hyderabad</option>
+        <option value="Bangalore">Bangalore</option>
+        <option value="Delhi">Delhi</option>
+        <option value="Kolkata">Kolkata</option>
+        <option value="Chennai">Chennai</option>
+    </select>
+    <button id="getWeatherBtn">Get Weather</button>
+    <div id="weatherInfo"></div>
+
+    <script>
+        // Function to simulate fetching weather data
+        function getDummyWeatherData(city) {
+            const dummyData = {
+                Mumbai: {
+                    temperature: 30,
+                    feelsLike: 32,
+                    condition: "Sunny",
+                    humidity: "70%",
+                    windSpeed: "15 km/h",
+                    visibility: "10 km"
+                },
+                Hyderabad: {
+                    temperature: 28,
+                    feelsLike: 30,
+                    condition: "Partly Cloudy",
+                    humidity: "65%",
+                    windSpeed: "10 km/h",
+                    visibility: "8 km"
+                },
+                Bangalore: {
+                    temperature: 25,
+                    feelsLike: 27,
+                    condition: "Clear",
+                    humidity: "60%",
+                    windSpeed: "12 km/h",
+                    visibility: "12 km"
+                },
+                Delhi: {
+                    temperature: 35,
+                    feelsLike: 37,
+                    condition: "Hazy",
+                    humidity: "40%",
+                    windSpeed: "20 km/h",
+                    visibility: "5 km"
+                },
+                Kolkata: {
+                    temperature: 32,
+                    feelsLike: 34,
+                    condition: "Thunderstorms",
+                    humidity: "80%",
+                    windSpeed: "25 km/h",
+                    visibility: "3 km"
+                },
+                Chennai: {
+                    temperature: 34,
+                    feelsLike: 36,
+                    condition: "Humid",
+                    humidity: "75%",
+                    windSpeed: "18 km/h",
+                    visibility: "7 km"
+                }
+            };
+            return dummyData[city];
+        }
+
+        // Fetch weather data for selected city
+        document.getElementById('getWeatherBtn').addEventListener('click', () => {
+            const selectedCity = document.getElementById('citySelect').value;
+            if (selectedCity) {
+                const weatherData = getDummyWeatherData(selectedCity);
+                if (weatherData) {
+                    document.getElementById('weatherInfo').innerHTML = `
+                        <h2>Weather in ${selectedCity}</h2>
+                        <div class="weather-detail">Temperature: ${weatherData.temperature} °C</div>
+                        <div class="weather-detail">Feels Like: ${weatherData.feelsLike} °C</div>
+                        <div class="weather-detail">Condition: ${weatherData.condition}</div>
+                        <div class="weather-detail">Humidity: ${weatherData.humidity}</div>
+                        <div class="weather-detail">Wind Speed: ${weatherData.windSpeed}</div>
+                        <div class="weather-detail">Visibility: ${weatherData.visibility}</div>
+                    `;
+                }
+            } else {
+                document.getElementById('weatherInfo').textContent = 'Please select a city!';
+            }
+        });
+    </script>
+</body>
+</html>
